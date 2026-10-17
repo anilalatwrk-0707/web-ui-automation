@@ -6,7 +6,8 @@ on:
   pull_request:
     branches: ["main"]
   schedule:
-    - cron: "23 7 * * 1"
+    - cron: "0 0 * * 0"
+  workflow_dispatch:
 
 jobs:
   analyze:
@@ -18,16 +19,13 @@ jobs:
       security-events: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v4
         with:
           languages: javascript-typescript
           queries: security-extended
-
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v4
 
       - name: Perform CodeQL analysis
         uses: github/codeql-action/analyze@v4
