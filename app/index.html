@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Automation demo</title>
+  </head>
+  <body>
+    <main>
+      <h1>Automation demo</h1>
+      <form aria-label="Sign in">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="username" required>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required>
+        <button type="submit">Sign in</button>
+      </form>
+      <p role="status" aria-live="polite"></p>
+    </main>
+    <script>
+      const form = document.querySelector("form");
+      const status = document.querySelector('[role="status"]');
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        status.textContent = `Signed in as ${form.elements.email.value}`;
+      });
+    </script>
+  </body>
+</html>
